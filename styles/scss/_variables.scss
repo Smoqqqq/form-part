@@ -1,0 +1,8 @@
+$theme: rgb(7, 176, 78);
+$error: rgb(255, 101, 101);
+
+$mobile: 992px;
+
+:root {
+    --theme: #{$theme};
+}

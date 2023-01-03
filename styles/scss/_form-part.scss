@@ -1,0 +1,114 @@
+.form-part-holder {
+    .form-part-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 25px;
+        .form-part-nav-item {
+            min-width: 40px;
+            height: 40px;
+            padding: 0px 20px;
+            display: grid;
+            place-items: center;
+            border: 2px solid var(--theme);
+            border-radius: 25px;
+            color: var(--theme);
+            cursor: pointer;
+            margin: 20px;
+            &.active {
+                color: white;
+                background: var(--theme);
+            }
+
+            &.invalid {
+                background: $error;
+                border-color: $error;
+                color: white;
+            }
+
+            @media (max-width: $mobile) {
+                margin: 10px;
+            }
+        }
+
+        @media (max-width: $mobile) {
+            flex-direction: column;
+        }
+    }
+
+    .form-alert-container {
+        width: 100%;
+    }
+
+    .form-alert {
+        width: 100%;
+        background: $error;
+        padding: 10px;
+        color: white;
+        border-radius: 5px;
+        margin: 10px 0px;
+    }
+
+    input.invalid,
+    textarea.invalid,
+    select.invalid {
+        border-color: $error;
+    }
+
+    .form-part-controls {
+        display: flex;
+        flex-direction: row;
+
+        .form-part-control {
+            padding: 10px 30px;
+            display: grid;
+            place-items: center;
+            border: 2px solid var(--theme);
+            border-radius: 25px;
+            color: var(--theme);
+            background: white;
+            cursor: pointer;
+            user-select: none;
+
+            &.form-part-next-page, &.form-part-submit {
+                margin-left: auto;
+            }
+        }
+    }
+
+    .form-parts {
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        .form-part {
+            width: 100%;
+            background: var(--theme);
+            margin: 0px 25px;
+            padding: 25px;
+            border-radius: 10px;
+            color: white;
+
+            &:first-child {
+                margin-left: 0px;
+            }
+
+            &:last-child {
+                margin-right: 0px;
+            }
+        }
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.justify-content-space-between {
+    justify-content: space-between;
+    margin-top: 20px;
+}

@@ -1,0 +1,17 @@
+{
+    "name": "form-part",
+    "version": "1.0.0",
+    "description": "",
+    "main": "form-part.js",
+    "dependencies": {},
+    "devDependencies": {
+        "node-sass": "^8.0.0"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "node-sass -w styles/scss/index.scss --output-style compressed -o styles/css"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

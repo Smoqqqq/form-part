@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Form part</title>
+</head>
+
+<body>
+    <div class="container">
+        <div id="form">
+            <div class="form-parts">
+                <div class="form-part" data-part-name="Personnal infos">
+                    <h1>Personnal infos</h1>
+                    <hr>
+                    <div class="form-alert-container"></div>
+                    <label for="firstname" class="form-label">Firstname</label>
+                    <input class="form-control" type="text" required="false" name="firstname"><br>
+                    <label for="lastname" class="form-label">Lastname</label>
+                    <input class="form-control" type="text" required="false" name="lastname"><br>
+                    <label for="date_of_birth" class="form-label">Date of birth</label>
+                    <input class="form-control" type="date" required="false" name="date_of_birth"><br>
+                </div>
+                <div class="form-part" data-part-name="Address">
+                    <h1>Address</h1>
+                    <hr>
+                    <div class="form-alert-container"></div>
+                    <label for="line1" class="form-label">Line 1</label>
+                    <input class="form-control" type="text" required="false" name="line1"><br>
+                    <label for="city" class="form-label">City</label>
+                    <input class="form-control" type="text" required="false" name="city"><br>
+                    <label for="country" class="form-label">Country</label>
+                    <input class="form-control" type="text" required="false" name="country"><br>
+                </div>
+                <div class="form-part" data-part-name="Address">
+                    <h1>Address</h1>
+                    <hr>
+                    <div class="form-alert-container"></div>
+                    <label for="line1" class="form-label">Line 1</label>
+                    <input class="form-control" type="text" required="false" name="line1"><br>
+                    <label for="city" class="form-label">City</label>
+                    <input class="form-control" type="text" required="false" name="city"><br>
+                    <label for="country" class="form-label">Country</label>
+                    <input class="form-control" type="text" required="false" name="country"><br>
+                </div>
+                <div class="form-part" data-part-name="Address">
+                    <h1>Address</h1>
+                    <hr>
+                    <div class="form-alert-container"></div>
+                    <label for="line1" class="form-label">Line 1</label>
+                    <input class="form-control" type="text" required="false" name="line1"><br>
+                    <label for="city" class="form-label">City</label>
+                    <input class="form-control" type="text" required="false" name="city"><br>
+                    <label for="country" class="form-label">Country</label>
+                    <input class="form-control" type="text" required="false" name="country"><br>
+                </div>
+                <div class="form-part" data-part-name="Address">
+                    <h1>Address</h1>
+                    <hr>
+                    <div class="form-alert-container"></div>
+                    <label for="line1" class="form-label">Line 1</label>
+                    <input class="form-control" type="text" required="false" name="line1"><br>
+                    <label for="city" class="form-label">City</label>
+                    <input class="form-control" type="text" required="false" name="city"><br>
+                    <label for="country" class="form-label">Country</label>
+                    <input class="form-control" type="text" required="false" name="country"><br>
+                </div>
+                <div class="form-part" data-part-name="Address">
+                    <h1>Address</h1>
+                    <hr>
+                    <div class="form-alert-container"></div>
+                    <label for="line1" class="form-label">Line 1</label>
+                    <input class="form-control" type="text" required="false" name="line1"><br>
+                    <label for="city" class="form-label">City</label>
+                    <input class="form-control" type="text" required="false" name="city"><br>
+                    <label for="country" class="form-label">Country</label>
+                    <input class="form-control" type="text" required="false" name="country"><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/form-part.js"></script>
+
+    <script>
+        
+        const form = new AnimatedForm({
+            holder: document.getElementById("form"),
+            submitButton: false
+        });
+
+    </script>
+</body>
+
+</html>
