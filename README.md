@@ -68,6 +68,7 @@ Available options are listed below :
 | nav               | bool          | true              |           |
 | submitButton      | bool          | true              |           |
 | submitButtonText  | string        | "Submit"          |           |
+| partMargin        | number        | 25                |           |
 
 ## PAGE TITLE (nav)
 to set a page title (instead of using numbers in navs), set the ` data-part-name` attribute to the title you want :

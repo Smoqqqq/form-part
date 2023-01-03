@@ -23,7 +23,7 @@
                     <label for="lastname" class="form-label">Lastname</label>
                     <input class="form-control" type="text" required="false" name="lastname"><br>
                     <label for="date_of_birth" class="form-label">Date of birth</label>
-                    <input class="form-control" type="date" required="false" name="date_of_birth"><br>
+                    <input class="form-control" type="date" required="true" name="date_of_birth"><br>
                 </div>
                 <div class="form-part" data-part-name="Address">
                     <h1>Address</h1>
@@ -84,10 +84,12 @@
         </div>
     </div>
 
-    <script src="js/form-part.js"></script>
+    <script src="form-part.js" type="module"></script>
 
-    <script>
+    <script type="module">
         
+        import AnimatedForm from "./form-part.js";
+
         const form = new AnimatedForm({
             holder: document.getElementById("form"),
             submitButton: false

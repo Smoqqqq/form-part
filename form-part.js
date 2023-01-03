@@ -25,6 +25,7 @@ class AnimatedForm {
             submitButtonText: "Submit",
             previousPageText: "Previous",
             nextPageText: "Next",
+            slideMargin: 25
         }
 
         for(const option in defaults) {
@@ -166,9 +167,9 @@ class AnimatedForm {
 
         // check for empty inputs
         if (checkInputs) {
-            if (!this.checkInputs(index - 1)) {
+            if (!this.checkInputs(this.currentIndex)) {
                 if (document.getElementsByClassName("form-alert").length < 1) {
-                    this.addAlert("Please fill in required inputs (with red borders) to go to the next page", index - 1);
+                    this.addAlert("Please fill in required inputs (with red borders) to go to the next page", this.currentIndex);
                 }
                 return;
             } else {
@@ -181,7 +182,7 @@ class AnimatedForm {
 
         this.currentIndex = index;
 
-        let leftCoordinates = index * this.scrollArea.getBoundingClientRect().width + (50 * index)
+        let leftCoordinates = index * this.scrollArea.getBoundingClientRect().width + (this.config.slideMargin * 2 * index)
 
         this.scrollArea.scrollTo({
             top: 0,
@@ -229,3 +230,5 @@ class AnimatedForm {
         return valid;
     }
 }
+
+export default AnimatedForm;
