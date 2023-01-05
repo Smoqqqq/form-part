@@ -66,16 +66,18 @@ your form is now split in two pages !
 The `AnimatedForm` Javascript class takes only one argument : the config object.
 Available options are listed below :
 
-| Name              | Type          | Default           | Required  |
-|-------------------|---------------|-------------------|-----------|
-| holder            | HtmlElement   |                   | true      |
-| controls          | bool          | true              |           |
-| nav               | bool          | true              |           |
-| previousPageText: | string        | "Previous"        |           |
-| nextPageText:     | string        | "Next"            |           |
-| submitButton      | bool          | true              |           |
-| submitButtonText  | string        | "Submit"          |           |
-| partMargin        | number        | 25                |           |
+| Name                  | Type          | Default           | Required  |
+|-----------------------|---------------|-------------------|-----------|
+| holder                | HtmlElement   |                   | true      |
+| controls              | bool          | true              |           |
+| nav                   | bool          | true              |           |
+| previousPageText:     | string        | "Previous"        |           |
+| nextPageText:         | string        | "Next"            |           |
+| submitButton          | bool          | true              |           |
+| submitButtonText      | string        | "Submit"          |           |
+| partMargin            | number        | 25                |           |
+| defaultFieldAlertText | number        | false             |           |
+| emptyFieldsAlert      | string        | Please fill in... |           |
 
 ## PAGE TITLE (nav)
 to set a page title (instead of using numbers in navs), set the `data-part-name` attribute to the title you want :
@@ -85,3 +87,23 @@ to set a page title (instead of using numbers in navs), set the `data-part-name`
 ```
 
 'Address' will now show as the title in the navigation !
+
+## Required fields
+
+Required fields will automatically prevent you from going to the next page, and show you an alert on top of the page.
+you can change this message using the `emptyFieldsAlert` option
+
+if you want field-specific alerts, you can provide a `data-alert` attribute with the message inside like so :
+
+```html
+<input class="form-control" type="text" required="true" name="country" data-alert="Please indicate your country">
+```
+
+You can also provide a form-wide input alert by setting the defaultFieldAlertText :
+
+```javascript
+const form = new AnimatedForm({
+    holder: document.getElementById("form"),
+    defaultFieldAlertText: "Please fill in this field",
+});
+```

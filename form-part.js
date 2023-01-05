@@ -42,6 +42,8 @@ class AnimatedForm {
             submitButton: true,
             submitButtonText: "Submit",
             partMargin: 25,
+            defaultFieldAlertText: false,
+            emptyFieldsAlert: "Please fill in required inputs (with red borders) to go to the next page"
         }
 
         for (const option in defaults) {
@@ -176,7 +178,7 @@ class AnimatedForm {
         if (checkInputs) {
             if (!this.checkInputs(this.currentIndex)) {
                 if (document.getElementsByClassName("form-alert").length < 1) {
-                    this.addAlert("Please fill in required inputs (with red borders) to go to the next page", this.currentIndex);
+                    this.addAlert(this.config.emptyFieldsAlert, this.currentIndex);
                 }
                 return;
             } else {
@@ -219,6 +221,9 @@ class AnimatedForm {
         }
     }
 
+    /**
+     * Verify that every required input as some text in it
+     */
     checkInputs(index) {
         let inputs = this.parts[index].inputs;
         let valid = true;
@@ -227,6 +232,21 @@ class AnimatedForm {
             if (inputs[i].getAttribute("required") && inputs[i].getAttribute("required") !== "false") {
                 if (inputs[i].value.length < 1) {
                     inputs[i].classList.add("invalid");
+
+                    if (inputs[i].getAttribute("data-alert")) {
+                        let alert = document.createElement("span");
+                        alert.className = "form-part-input-alert";
+                        alert.innerText = inputs[i].getAttribute("data-alert");
+
+                        this.parts[index].insertBefore(alert, inputs[i]);
+                    } else if (this.config.defaultFieldAlertText) {
+                        let alert = document.createElement("span");
+                        alert.className = "form-part-input-alert";
+                        alert.innerText = this.config.defaultFieldAlertText;
+
+                        this.parts[index].insertBefore(alert, inputs[i]);
+                    }
+
                     valid = false;
                 } else {
                     inputs[i].classList.remove("invalid");

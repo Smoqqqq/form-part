@@ -22,7 +22,7 @@
                 <label for="lastname" class="form-label">Lastname</label>
                 <input class="form-control" type="text" required="false" name="lastname"><br>
                 <label for="date_of_birth" class="form-label">Date of birth</label>
-                <input class="form-control" type="date" required="false" name="date_of_birth"><br>
+                <input class="form-control" type="date" required="true" name="date_of_birth"><br>
             </div>
             <div class="form-part" data-part-name="Address">
                 <h1>Address</h1>
@@ -33,7 +33,7 @@
                 <label for="city" class="form-label">City</label>
                 <input class="form-control" type="text" required="false" name="city"><br>
                 <label for="country" class="form-label">Country</label>
-                <input class="form-control" type="text" required="false" name="country"><br>
+                <input class="form-control" type="text" required="true" name="country" data-alert="Please indicate your country"><br>
             </div>
             <div class="form-part" data-part-name="Address">
                 <h1>Address</h1>
@@ -90,7 +90,9 @@
 
         const form = new AnimatedForm({
             holder: document.getElementById("form"),
-            submitButton: false
+            submitButton: false,
+            defaultFieldAlert: true,
+            defaultFieldAlertText: "Please fill in this field",
         });
 
     </script>

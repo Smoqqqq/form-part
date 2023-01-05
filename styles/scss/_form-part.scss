@@ -95,6 +95,12 @@
             &:last-child {
                 margin-right: 0px;
             }
+
+            .form-part-input-alert {
+                color: $error;
+                font-size: 14px;
+                margin: 0px 15px;
+            }
         }
     }
 }
