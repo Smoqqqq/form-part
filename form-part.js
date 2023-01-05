@@ -8,66 +8,69 @@ class AnimatedForm {
         this.currentIndex = 0;
 
         this.initHtmlStructure();
-        this.getInputs();
-
         this.defaultConfig();
         this.handleConfig();
-
+        this.getInputs();
         this.resizeParts();
         this.goTo(0);
-
-        this.checkForErrors();
     }
 
+    /**
+     * Inits the HTML structure :
+     * wraps .form-part in .form-parts
+     */
     initHtmlStructure() {
         this.scrollArea = document.createElement("div");
         this.scrollArea.classList.add("form-parts");
-        
+
         while (this.holder.childNodes.length > 0) {
             this.scrollArea.appendChild(this.holder.childNodes[0]);
-          }
+        }
 
         this.holder.append(this.scrollArea);
     }
- 
+
+    /**
+     * Set defaults for undefined config options
+     */
     defaultConfig() {
         let defaults = {
-            submitButton: true,
-            submitButtonText: "Submit",
+            controls: true,
+            nav: true,
             previousPageText: "Previous",
             nextPageText: "Next",
-            slideMargin: 25
+            submitButton: true,
+            submitButtonText: "Submit",
+            partMargin: 25,
         }
 
-        for(const option in defaults) {
-            if(this.config[option] === undefined) {
+        for (const option in defaults) {
+            if (this.config[option] === undefined) {
                 this.config[option] = defaults[option];
             }
         }
     }
 
+    /**
+     * handle config choices
+     */
     handleConfig() {
-        // Add or not the nav elements
-        if (this.config.nav === undefined || this.config.nav === true) {
-            this.config.nav = true;
+        // Add the nav elements
+        if (this.config.nav) {
             this.createNav();
-            this.handleNavEvents();
+            this.handleNav();
         }
 
-        // Add or not previous / next controls + submit btn
-        if (this.config.controls === undefined || this.config.controls === true) {
-            this.config.controls = true;
+        // Add previous / next controls + submit btn
+        if (this.config.controls) {
             this.addControls();
             this.handleControls();
         }
-
-        if (typeof this.config.themeColor === "string") {
-            document.querySelector(':root').style.setProperty('--theme', this.config.themeColor);
-        } else {
-            console.log(typeof this.config.themeColor)
-        }
     }
 
+    /**
+     * Adds control btns on each page
+     */
     addControls() {
         for (let i = 0; i < this.parts.length; i++) {
             let controls = document.createElement("div");
@@ -84,59 +87,6 @@ class AnimatedForm {
             }
 
             this.parts[i].append(controls);
-        }
-    }
-
-    checkForErrors() {
-        let scrolled = false;
-        for (let i = 0; i < this.parts.length; i++) {
-            if (this.parts[i].querySelectorAll(".invalid-feedback").length > 0) {
-                this.holder.querySelectorAll(".form-part-nav-item")[i].classList.add("invalid");
-                if (!scrolled) {
-                    scrolled = true;
-                    this.goTo(i);
-                }
-            }
-        }
-    }
-
-    resizeParts() {
-        let width = this.scrollArea.getBoundingClientRect().width;
-
-        for (let i = 0; i < this.parts.length; i++) {
-            this.parts[i].style.width = width + "px";
-            this.parts[i].style.minWidth = width + "px";
-        }
-
-        addEventListener("resize", () => {
-            this.resizeParts();
-            this.goTo(this.currentIndex);
-        })
-    }
-
-    createNav() {
-        let html = "";
-        let elem = document.createElement("div");
-        elem.className = "form-part-nav";
-
-        for (let i = 0; i < this.parts.length; i++) {
-            let name = (this.parts[i].getAttribute("data-part-name")) ? this.parts[i].getAttribute("data-part-name") : i + 1;
-
-            html += `<div class="form-part-nav-item">${name}</div>`;
-        }
-
-        elem.innerHTML = html;
-        this.holder.insertBefore(elem, this.scrollArea);
-
-        this.navs = this.holder.querySelectorAll(".form-part-nav-item");
-    }
-
-    handleNavEvents() {
-        for (let i = 0; i < this.navs.length; i++) {
-            this.navs[i].addEventListener("click", () => {
-                let check = (i > this.currentIndex) ? true : false;
-                this.goTo(i, check);
-            })
         }
     }
 
@@ -157,6 +107,52 @@ class AnimatedForm {
                 })
             }
         }
+    }
+
+    /**
+     * Creates navigation elements
+     */
+    createNav() {
+        let html = "";
+        let elem = document.createElement("div");
+        elem.className = "form-part-nav";
+
+        for (let i = 0; i < this.parts.length; i++) {
+            let name = (this.parts[i].getAttribute("data-part-name")) ? this.parts[i].getAttribute("data-part-name") : i + 1;
+
+            html += `<div class="form-part-nav-item">${name}</div>`;
+        }
+
+        elem.innerHTML = html;
+        this.holder.insertBefore(elem, this.scrollArea);
+
+        this.navs = this.holder.querySelectorAll(".form-part-nav-item");
+    }
+
+    handleNav() {
+        for (let i = 0; i < this.navs.length; i++) {
+            this.navs[i].addEventListener("click", () => {
+                let check = (i > this.currentIndex) ? true : false;
+                this.goTo(i, check);
+            })
+        }
+    }
+
+    /**
+     * Resizes parts on page resize
+     */
+    resizeParts() {
+        let width = this.scrollArea.getBoundingClientRect().width;
+
+        for (let i = 0; i < this.parts.length; i++) {
+            this.parts[i].style.width = width + "px";
+            this.parts[i].style.minWidth = width + "px";
+        }
+
+        addEventListener("resize", () => {
+            this.resizeParts();
+            this.goTo(this.currentIndex);
+        })
     }
 
     addAlert(message, index = null) {
@@ -193,7 +189,7 @@ class AnimatedForm {
 
         this.currentIndex = index;
 
-        let leftCoordinates = index * this.scrollArea.getBoundingClientRect().width + (this.config.slideMargin * 2 * index)
+        let leftCoordinates = index * this.scrollArea.getBoundingClientRect().width + (this.config.partMargin * 2 * index)
 
         this.scrollArea.scrollTo({
             top: 0,

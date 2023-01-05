@@ -70,9 +70,9 @@ Available options are listed below :
 |-------------------|---------------|-------------------|-----------|
 | holder            | HtmlElement   |                   | true      |
 | controls          | bool          | true              |           |
+| nav               | bool          | true              |           |
 | previousPageText: | string        | "Previous"        |           |
 | nextPageText:     | string        | "Next"            |           |
-| nav               | bool          | true              |           |
 | submitButton      | bool          | true              |           |
 | submitButtonText  | string        | "Submit"          |           |
 | partMargin        | number        | 25                |           |

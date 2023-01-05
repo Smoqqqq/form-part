@@ -10,14 +10,14 @@
             padding: 0px 20px;
             display: grid;
             place-items: center;
-            border: 2px solid var(--theme);
+            border: 2px solid var(--form-part-theme);
             border-radius: 25px;
-            color: var(--theme);
+            color: var(--form-part-theme);
             cursor: pointer;
             margin: 20px;
             &.active {
                 color: white;
-                background: var(--theme);
+                background: var(--form-part-theme);
             }
 
             &.invalid {
@@ -63,9 +63,9 @@
             padding: 10px 30px;
             display: grid;
             place-items: center;
-            border: 2px solid var(--theme);
+            border: 2px solid var(--form-part-theme);
             border-radius: 25px;
-            color: var(--theme);
+            color: var(--form-part-theme);
             background: white;
             cursor: pointer;
             user-select: none;
@@ -82,7 +82,7 @@
         overflow: hidden;
         .form-part {
             width: 100%;
-            background: var(--theme);
+            background: var(--form-part-theme);
             margin: 0px 25px;
             padding: 25px;
             border-radius: 10px;
