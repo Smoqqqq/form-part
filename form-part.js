@@ -5,9 +5,9 @@ class AnimatedForm {
         this.holder.classList.add("form-part-holder");
 
         this.parts = this.holder.querySelectorAll(".form-part");
-        this.scrollArea = this.holder.querySelector(".form-parts");
         this.currentIndex = 0;
 
+        this.initHtmlStructure();
         this.getInputs();
 
         this.defaultConfig();
@@ -19,6 +19,17 @@ class AnimatedForm {
         this.checkForErrors();
     }
 
+    initHtmlStructure() {
+        this.scrollArea = document.createElement("div");
+        this.scrollArea.classList.add("form-parts");
+        
+        while (this.holder.childNodes.length > 0) {
+            this.scrollArea.appendChild(this.holder.childNodes[0]);
+          }
+
+        this.holder.append(this.scrollArea);
+    }
+ 
     defaultConfig() {
         let defaults = {
             submitButton: true,

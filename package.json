@@ -9,6 +9,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "node-sass styles/scss/index.scss --output-style compressed -o styles/css",
         "watch": "node-sass -w styles/scss/index.scss --output-style compressed -o styles/css"
     },
     "keywords": [],

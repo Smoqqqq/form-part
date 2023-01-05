@@ -27,30 +27,37 @@ say we now want to split it in two blocks, personnal infos and address. With for
 
 ```html
 <div id="form">
-    <div class="form-parts">
-        <div class="form-part">
-            <h1>Personnal infos</h1>
-            <hr>
-            <label for="firstname" class="form-label">Firstname</label>
-            <input class="form-control" type="text" required="true" name="firstname"><br>
-            <label for="lastname" class="form-label">Lastname</label>
-            <input class="form-control" type="text" required="true" name="lastname"><br>
-            <label for="date_of_birth" class="form-label">Date of birth</label>
-            <input class="form-control" type="date" required="true" name="date_of_birth"><br>
-        </div>
-        <div class="form-part">
-            <h1>Address</h1>
-            <hr>
-            <label for="line1" class="form-label">Line 1</label>
-            <input class="form-control" type="text" required="true" name="line1"><br>
-            <label for="city" class="form-label">City</label>
-            <input class="form-control" type="text" required="true" name="city"><br>
-            <label for="country" class="form-label">Country</label>
-            <input class="form-control" type="text" required="true" name="country"><br>
-        </div>
+    <div class="form-part">
+        <h1>Personnal infos</h1>
+        <hr>
+        <label for="firstname" class="form-label">Firstname</label>
+        <input class="form-control" type="text" required="true" name="firstname"><br>
+        <label for="lastname" class="form-label">Lastname</label>
+        <input class="form-control" type="text" required="true" name="lastname"><br>
+        <label for="date_of_birth" class="form-label">Date of birth</label>
+        <input class="form-control" type="date" required="true" name="date_of_birth"><br>
+    </div>
+    <div class="form-part">
+        <h1>Address</h1>
+        <hr>
+        <label for="line1" class="form-label">Line 1</label>
+        <input class="form-control" type="text" required="true" name="line1"><br>
+        <label for="city" class="form-label">City</label>
+        <input class="form-control" type="text" required="true" name="city"><br>
+        <label for="country" class="form-label">Country</label>
+        <input class="form-control" type="text" required="true" name="country"><br>
     </div>
 </div>
+
+<script type="module">
+    import AnimatedForm from "./form-part.js";
+
+    const form = new AnimatedForm({
+        holder: document.getElementById("form")
+    });
+</script>
 ```
+(wrap your form in a div (eg: the holder))
 
 your form is now split in two pages !
 
@@ -71,7 +78,7 @@ Available options are listed below :
 | partMargin        | number        | 25                |           |
 
 ## PAGE TITLE (nav)
-to set a page title (instead of using numbers in navs), set the ` data-part-name` attribute to the title you want :
+to set a page title (instead of using numbers in navs), set the `data-part-name` attribute to the title you want :
 
 ```html
 <div class="form-part" data-part-name="Address"> ... </div>
