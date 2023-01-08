@@ -1,8 +1,11 @@
+import Validator from "./validator.js";
+
 class AnimatedForm {
     constructor(config) {
         this.config = config;
         this.holder = config.holder;
         this.holder.classList.add("form-part-holder");
+        this.validator = new Validator();
 
         this.parts = this.holder.querySelectorAll(".form-part");
         this.currentIndex = 0;
@@ -43,7 +46,7 @@ class AnimatedForm {
             submitButtonText: "Submit",
             partMargin: 25,
             defaultFieldAlertText: false,
-            emptyFieldsAlert: "Please fill in required inputs (with red borders) to go to the next page"
+            emptyFieldsAlertText: "Please fill in required inputs to go to the next page",
         }
 
         for (const option in defaults) {
@@ -178,7 +181,7 @@ class AnimatedForm {
         if (checkInputs) {
             if (!this.checkInputs(this.currentIndex)) {
                 if (document.getElementsByClassName("form-alert").length < 1) {
-                    this.addAlert(this.config.emptyFieldsAlert, this.currentIndex);
+                    this.addAlert(this.config.emptyFieldsAlertText, this.currentIndex);
                 }
                 return;
             } else {
@@ -223,6 +226,7 @@ class AnimatedForm {
 
     /**
      * Verify that every required input as some text in it
+     * then passes it to the validator
      */
     checkInputs(index) {
         let inputs = this.parts[index].inputs;
@@ -230,31 +234,34 @@ class AnimatedForm {
 
         for (let i = 0; i < inputs.length; i++) {
             if (inputs[i].getAttribute("required") && inputs[i].getAttribute("required") !== "false") {
-                if (inputs[i].value.length < 1) {
-                    inputs[i].classList.add("invalid");
-
-                    if (inputs[i].getAttribute("data-alert")) {
-                        let alert = document.createElement("span");
-                        alert.className = "form-part-input-alert";
-                        alert.innerText = inputs[i].getAttribute("data-alert");
-
-                        this.parts[index].insertBefore(alert, inputs[i]);
-                    } else if (this.config.defaultFieldAlertText) {
-                        let alert = document.createElement("span");
-                        alert.className = "form-part-input-alert";
-                        alert.innerText = this.config.defaultFieldAlertText;
-
-                        this.parts[index].insertBefore(alert, inputs[i]);
-                    }
+                if (!this.validator.validate(inputs[i]) || inputs[i].value.length < 1) {
+                    this.setInvalidInput(inputs, index, i);
 
                     valid = false;
                 } else {
-                    inputs[i].classList.remove("invalid");
+                    this.setValidInput(inputs, i);
                 }
             }
         }
 
         return valid;
+    }
+
+    setInvalidInput(inputs, index, i) {
+        inputs[i].classList.add("invalid");
+
+        if ((inputs[i].getAttribute("data-alert") || this.config.defaultFieldAlertText) && !document.querySelector(`[data-form-part-input-id="${i}"]`)) {
+            let alert = document.createElement("span");
+            alert.className = "form-part-input-alert";
+            alert.setAttribute("data-form-part-input-id", i);
+            alert.innerText = (inputs[i].getAttribute("data-alert")) ? inputs[i].getAttribute("data-alert") : this.config.defaultFieldAlertText;
+            this.parts[index].insertBefore(alert, inputs[i]);
+        }
+    }
+
+    setValidInput(inputs, i) {
+        inputs[i].classList.remove("invalid");
+        document.querySelector(`[data-form-part-input-id="${i}"]`)?.remove();
     }
 }
 

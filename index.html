@@ -13,76 +13,43 @@
 <body>
     <div class="container">
         <div id="form">
-            <div class="form-part" data-part-name="Personnal infos">
-                <h1>Personnal infos</h1>
+            <div class="form-part" data-part-name="Informations personnelles">
+                <h1>Informations personnelles</h1>
                 <hr>
                 <div class="form-alert-container"></div>
-                <label for="firstname" class="form-label">Firstname</label>
-                <input class="form-control" type="text" required="false" name="firstname"><br>
-                <label for="lastname" class="form-label">Lastname</label>
-                <input class="form-control" type="text" required="false" name="lastname"><br>
-                <label for="date_of_birth" class="form-label">Date of birth</label>
-                <input class="form-control" type="date" required="true" name="date_of_birth"><br>
+                <label for="firstname" class="form-label">Prénom</label>
+                <input class="form-control" type="text" required="true" name="firstname" data-form-constraints="text"><br>
+                <label for="lastname" class="form-label">Nom</label>
+                <input class="form-control" type="text" required="true" name="lastname" data-form-constraints="text uppercase"><br>
+                <label for="date_of_birth" class="form-label">Date de naissance</label>
+                <input class="form-control" type="date" required="true" name="date_of_birth" data-alert="Veuillez renseigner votre date de naissance" data-form-constraints="text uppercase"><br>
             </div>
-            <div class="form-part" data-part-name="Address">
-                <h1>Address</h1>
+            <div class="form-part" data-part-name="Adresse">
+                <h1>Adresse</h1>
                 <hr>
                 <div class="form-alert-container"></div>
-                <label for="line1" class="form-label">Line 1</label>
+                <label for="line1" class="form-label">Ligne 1</label>
                 <input class="form-control" type="text" required="false" name="line1"><br>
-                <label for="city" class="form-label">City</label>
+                <label for="city" class="form-label">Ville</label>
                 <input class="form-control" type="text" required="false" name="city"><br>
-                <label for="country" class="form-label">Country</label>
-                <input class="form-control" type="text" required="true" name="country" data-alert="Please indicate your country"><br>
+                <label for="zipcode" class="form-label">Code postal</label>
+                <input class="form-control" type="number" required="false" name="zipcode"><br>
+                <label for="country" class="form-label">Pays</label>
+                <input class="form-control" type="text" required="true" name="country" data-alert="Veuillez renseigner votre pays"><br>
             </div>
-            <div class="form-part" data-part-name="Address">
-                <h1>Address</h1>
+            <div class="form-part" data-part-name="Autres">
+                <h1>Autres</h1>
                 <hr>
                 <div class="form-alert-container"></div>
-                <label for="line1" class="form-label">Line 1</label>
-                <input class="form-control" type="text" required="false" name="line1"><br>
-                <label for="city" class="form-label">City</label>
-                <input class="form-control" type="text" required="false" name="city"><br>
-                <label for="country" class="form-label">Country</label>
-                <input class="form-control" type="text" required="false" name="country"><br>
-            </div>
-            <div class="form-part" data-part-name="Address">
-                <h1>Address</h1>
-                <hr>
-                <div class="form-alert-container"></div>
-                <label for="line1" class="form-label">Line 1</label>
-                <input class="form-control" type="text" required="false" name="line1"><br>
-                <label for="city" class="form-label">City</label>
-                <input class="form-control" type="text" required="false" name="city"><br>
-                <label for="country" class="form-label">Country</label>
-                <input class="form-control" type="text" required="false" name="country"><br>
-            </div>
-            <div class="form-part" data-part-name="Address">
-                <h1>Address</h1>
-                <hr>
-                <div class="form-alert-container"></div>
-                <label for="line1" class="form-label">Line 1</label>
-                <input class="form-control" type="text" required="false" name="line1"><br>
-                <label for="city" class="form-label">City</label>
-                <input class="form-control" type="text" required="false" name="city"><br>
-                <label for="country" class="form-label">Country</label>
-                <input class="form-control" type="text" required="false" name="country"><br>
-            </div>
-            <div class="form-part" data-part-name="Address">
-                <h1>Address</h1>
-                <hr>
-                <div class="form-alert-container"></div>
-                <label for="line1" class="form-label">Line 1</label>
-                <input class="form-control" type="text" required="false" name="line1"><br>
-                <label for="city" class="form-label">City</label>
-                <input class="form-control" type="text" required="false" name="city"><br>
-                <label for="country" class="form-label">Country</label>
-                <input class="form-control" type="text" required="false" name="country"><br>
+                <label for="firstname" class="form-label">Age</label>
+                <input class="form-control" type="number" required="true" name="age"><br>
+                <label for="lastname" class="form-label">Taille (cm)</label>
+                <input class="form-control" type="number" required="true" name="height"><br>
+                <label for="date_of_birth" class="form-label">Email</label>
+                <input class="form-control" type="email" required="true" name="email"><br>
             </div>
         </div>
     </div>
-
-    <script src="form-part.js" type="module"></script>
 
     <script type="module">
 
@@ -92,7 +59,7 @@
             holder: document.getElementById("form"),
             submitButton: false,
             defaultFieldAlert: true,
-            defaultFieldAlertText: "Please fill in this field",
+            emptyFieldsAlertText: "Veuillez remplir les champs en rouge",
         });
 
     </script>

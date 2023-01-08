@@ -66,18 +66,18 @@ your form is now split in two pages !
 The `AnimatedForm` Javascript class takes only one argument : the config object.
 Available options are listed below :
 
-| Name                  | Type          | Default           | Required  |
-|-----------------------|---------------|-------------------|-----------|
-| holder                | HtmlElement   |                   | true      |
-| controls              | bool          | true              |           |
-| nav                   | bool          | true              |           |
-| previousPageText:     | string        | "Previous"        |           |
-| nextPageText:         | string        | "Next"            |           |
-| submitButton          | bool          | true              |           |
-| submitButtonText      | string        | "Submit"          |           |
-| partMargin            | number        | 25                |           |
-| defaultFieldAlertText | number        | false             |           |
-| emptyFieldsAlert      | string        | Please fill in... |           |
+| Name                  | Type          | Default                                                   | Required  |
+|-----------------------|---------------|-----------------------------------------------------------|-----------|
+| holder                | HtmlElement   |                                                           | true      |
+| controls              | bool          | true                                                      |           |
+| nav                   | bool          | true                                                      |           |
+| previousPageText:     | string        | "Previous"                                                |           |
+| nextPageText:         | string        | "Next"                                                    |           |
+| submitButton          | bool          | true                                                      |           |
+| submitButtonText      | string        | "Submit"                                                  |           |
+| partMargin            | number        | 25                                                        |           |
+| defaultFieldAlertText | number        | false                                                     |           |
+| emptyFieldsAlertText  | string        | "Please fill in required inputs to go to the next page"   |           |
 
 ## PAGE TITLE (nav)
 to set a page title (instead of using numbers in navs), set the `data-part-name` attribute to the title you want :
@@ -91,7 +91,7 @@ to set a page title (instead of using numbers in navs), set the `data-part-name`
 ## Required fields
 
 Required fields will automatically prevent you from going to the next page, and show you an alert on top of the page.
-you can change this message using the `emptyFieldsAlert` option
+you can change this message using the `emptyFieldsAlertText` option
 
 if you want field-specific alerts, you can provide a `data-alert` attribute with the message inside like so :
 
@@ -106,4 +106,10 @@ const form = new AnimatedForm({
     holder: document.getElementById("form"),
     defaultFieldAlertText: "Please fill in this field",
 });
+```
+
+## CSS Variables
+
+```css
+--form-part-theme
 ```
