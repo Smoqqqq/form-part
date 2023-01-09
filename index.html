@@ -18,7 +18,7 @@
                 <hr>
                 <div class="form-alert-container"></div>
                 <label for="firstname" class="form-label">Prénom</label>
-                <input class="form-control" type="text" required="true" name="firstname" data-form-constraints="text"><br>
+                <input class="form-control" type="text" required="true" name="firstname" data-form-constraints="text maxLength:20"><br>
                 <label for="lastname" class="form-label">Nom</label>
                 <input class="form-control" type="text" required="true" name="lastname" data-form-constraints="text uppercase"><br>
                 <label for="date_of_birth" class="form-label">Date de naissance</label>
@@ -56,10 +56,12 @@
         import AnimatedForm from "./form-part.js";
 
         const form = new AnimatedForm({
+            validator: true,
             holder: document.getElementById("form"),
             submitButton: false,
             debug: true,
             defaultFieldAlert: true,
+            blockEmptyInputs: false,
             emptyFieldsAlertText: "Veuillez remplir les champs en rouge",
         });
 

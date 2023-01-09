@@ -49,6 +49,7 @@ class AnimatedForm {
             emptyFieldsAlertText: "Please fill in required inputs to go to the next page",
             validator: true,
             debug: false,
+            blockEmptyInputs: true
         }
 
         for (const option in defaults) {
@@ -75,9 +76,11 @@ class AnimatedForm {
         }
 
         if(this.config.validator) {
-            const validator = new Validator(this.config.debug);
+            this.validator = new Validator(this.config.debug);
 
-            validator.watch(this.inputs);
+            this.validator.watch(this.inputs);
+        } else {
+            this.validator = false;
         }
     }
 
@@ -244,7 +247,7 @@ class AnimatedForm {
 
         for (let i = 0; i < inputs.length; i++) {
             if (inputs[i].getAttribute("required") && inputs[i].getAttribute("required") !== "false") {
-                if (!this.validator.validate(inputs[i]) || inputs[i].value.length < 1) {
+                if ((this.config.blockEmptyInputs && inputs[i].value.length < 1) || (this.validator && !this.validator.validate(inputs[i]))) {
                     this.setInvalidInput(inputs, index, i);
 
                     valid = false;

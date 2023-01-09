@@ -66,18 +66,21 @@ your form is now split in two pages !
 The `AnimatedForm` Javascript class takes only one argument : the config object.
 Available options are listed below :
 
-| Name                  | Type          | Default                                                   | Required  |
-|-----------------------|---------------|-----------------------------------------------------------|-----------|
-| holder                | HtmlElement   |                                                           | true      |
-| controls              | bool          | true                                                      |           |
-| nav                   | bool          | true                                                      |           |
-| previousPageText:     | string        | "Previous"                                                |           |
-| nextPageText:         | string        | "Next"                                                    |           |
-| submitButton          | bool          | true                                                      |           |
-| submitButtonText      | string        | "Submit"                                                  |           |
-| partMargin            | number        | 25                                                        |           |
-| defaultFieldAlertText | number        | false                                                     |           |
-| emptyFieldsAlertText  | string        | "Please fill in required inputs to go to the next page"   |           |
+| Name                  | Type          | Default                                                   | Required  |  Description                                          |
+|-----------------------|---------------|-----------------------------------------------------------|-----------|-------------------------------------------------------|
+| holder                | HtmlElement   |                                                           | true      | HtmlElement                                           |
+| controls              | bool          | true                                                      |           | activate controls                                     |
+| nav                   | bool          | true                                                      |           | activate navigation                                   |
+| previousPageText:     | string        | "Previous"                                                |           |                                                       |
+| nextPageText:         | string        | "Next"                                                    |           |                                                       |
+| submitButton          | bool          | true                                                      |           |                                                       |
+| submitButtonText      | string        | "Submit"                                                  |           |                                                       |
+| partMargin            | number        | 25                                                        |           | px between parts                                      |
+| defaultFieldAlertText | number        | false                                                     |           |                                                       |
+| emptyFieldsAlertText  | string        | "Please fill in required inputs to go to the next page"   |           |                                                       |
+| validator             | bool          | true                                                      |           | disable constraints validation                        |
+| debug                 | bool          | false                                                     |           | Some visual debug output                              |
+| blockEmptyInputs      | bool          | true                                                      |           | Prevent page progress if required inputs are empty    |
 
 ## PAGE TITLE (nav)
 to set a page title (instead of using numbers in navs), set the `data-part-name` attribute to the title you want :
