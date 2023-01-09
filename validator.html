@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container py-5">
+        <form action="">
+            <input type="text" name="foo" class="form-control mb-5" data-form-constraints="length:0:38 nodot nowhitespace nonumber">
+            <input type="text" name="bar" class="form-control mb-5" data-form-constraints="length:10:10 nodot nowhitespace">
+
+            <div id="btn" class="btn btn-primary">CHECK</div>
+        </form>
+    </div>
+
+    <style>
+        .badge {
+            font-size: 16px;
+            float: right;
+            margin-left: 10px;
+        }
+    </style>
+
+    <script type="module">
+        import Validator from "./validator.js";
+
+        const validator = new Validator(true);
+
+        validator.watch(document.querySelectorAll("input"));
+
+        document.getElementById("btn").onclick = () => {
+            validator.validate(document.querySelectorAll("input"));
+        }
+    </script>
+</body>
+
+</html>

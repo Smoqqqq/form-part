@@ -12,8 +12,8 @@ class AnimatedForm {
 
         this.initHtmlStructure();
         this.defaultConfig();
-        this.handleConfig();
         this.getInputs();
+        this.handleConfig();
         this.resizeParts();
         this.goTo(0);
     }
@@ -47,6 +47,8 @@ class AnimatedForm {
             partMargin: 25,
             defaultFieldAlertText: false,
             emptyFieldsAlertText: "Please fill in required inputs to go to the next page",
+            validator: true,
+            debug: false,
         }
 
         for (const option in defaults) {
@@ -70,6 +72,12 @@ class AnimatedForm {
         if (this.config.controls) {
             this.addControls();
             this.handleControls();
+        }
+
+        if(this.config.validator) {
+            const validator = new Validator(this.config.debug);
+
+            validator.watch(this.inputs);
         }
     }
 
@@ -214,12 +222,14 @@ class AnimatedForm {
     }
 
     getInputs() {
+        this.inputs = [];
         for (let i = 0; i < this.parts.length; i++) {
             this.parts[i].inputs = [];
             let inputElems = this.parts[i].querySelectorAll("input, select, textarea")
 
             for (let j = 0; j < inputElems.length; j++) {
                 this.parts[i].inputs.push(inputElems[j]);
+                this.inputs.push(inputElems[j]);
             }
         }
     }
