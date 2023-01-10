@@ -1,6 +1,14 @@
 # FORM PART VALIDATOR
 
 The validator allows you to specify easily what each input should contain to be valid
+you can then watch for errors :
+
+```javascript
+import Validator from "./validator.js";
+
+const validator = new Validator();
+validator.watch(document.querySelectorAll("input"));
+```
 
 you simply add a keyword to it's `data-form-constraints` attribute, separated by spaces :
 

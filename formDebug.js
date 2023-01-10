@@ -1,5 +1,5 @@
 class FormDebug {
-    constructor (inputs = document.querySelectorAll("input")) {
+    constructor (inputs = document.querySelectorAll("input[data-form-constraints]")) {
         this.inputs = inputs;
         this.debug();
     }
@@ -7,7 +7,7 @@ class FormDebug {
     debug() {
         for(let i = 0; i < this.inputs.length; i++) {
             let hint = document.createElement("code");
-            hint.style.fontSize = "130%";
+            hint.style.fontSize = "110%";
             hint.innerText = this.inputs[i].getAttribute("data-form-constraints");
             this.inputs[i].parentNode.insertBefore(hint, this.inputs[i]);
 

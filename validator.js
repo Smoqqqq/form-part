@@ -15,7 +15,10 @@ class Validator {
             "number",
             "nodot",
             "nowhitespace",
-            "nonumber"
+            "nonumber",
+            "email",
+            "dateInPast",
+            "dateInFuture"
         ];
     }
 
@@ -218,6 +221,59 @@ class Validator {
         if (!input.value.match(/\s/)) return true;
 
         this.inputAlert(input, "La valeur ne doit pas contenir d'espaces.", "nowhitespace");
+        return false;
+    }
+
+    email(input) {
+        if (input.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/gm)) return true;
+
+        this.inputAlert(input, "La valeur n'est pas un email valide.", "email");
+        return false;
+    }
+
+    /**
+     * Will check if a date is **aproximately** x year / month / days in past
+     * @param {HtmlInputElement} input 
+     * @param {Number} minAgeYears 
+     * @param {Number} minAgeMonths 
+     * @param {Number} minAgeDays 
+     */
+    dateInPast(input, minAgeYears, minAgeMonths = 0, minAgeDays = 0) {
+        let date = new Date(input.value);
+        let today = new Date();
+
+        let diff = (365 * minAgeYears) * 24 * 3600 * 1000;
+        diff += minAgeMonths * 30 * 24 * 3600 * 1000;
+        diff += minAgeDays * 24 * 3600 * 1000;
+
+        if ((today - date) / diff > 1) {
+            return true;
+        }
+
+        this.inputAlert(input, `La date doit être au moins il y à ${minAgeYears} an(s), ${minAgeMonths} mois et ${minAgeDays} jour(s)`, 'dateInPast')
+        return false;
+    }
+
+    /**
+     * Will check if a date is **aproximately** x year / month / days in the future
+     * @param {HtmlInputElement} input 
+     * @param {Number} minAgeYears 
+     * @param {Number} minAgeMonths 
+     * @param {Number} minAgeDays 
+     */
+    dateInFuture(input, minAgeYears, minAgeMonths = 0, minAgeDays = 0) {
+        let date = new Date(input.value);
+        let today = new Date();
+
+        let diff = (365 * minAgeYears) * 24 * 3600 * 1000;
+        diff += minAgeMonths * 30 * 24 * 3600 * 1000;
+        diff += minAgeDays * 24 * 3600 * 1000;
+
+        if ((date - today) / diff > 1) {
+            return true;
+        }
+
+        this.inputAlert(input, `La date doit être au moins il dans ${minAgeYears} an(s), ${minAgeMonths} mois et ${minAgeDays} jour(s)`, 'dateInFuture')
         return false;
     }
 
